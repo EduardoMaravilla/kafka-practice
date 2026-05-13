@@ -11,8 +11,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.concurrent.CompletableFuture;
-
 /**
  *
  * @author eduar
@@ -25,9 +23,9 @@ public class GpsController {
     private final IGpsService gpsService;
 
     @PostMapping("/ingest")
-    public CompletableFuture<ResponseEntity<Void>> ingestDataGps(@RequestBody GpsEvent gpsEvent){
-        return CompletableFuture.runAsync(() -> gpsService.sendEvent(gpsEvent))
-                .thenApply(v -> ResponseEntity.status(HttpStatus.CREATED).build());
+    public ResponseEntity<Void> ingestDataGps(@RequestBody GpsEvent gpsEvent){
+        gpsService.sendEvent(gpsEvent);
+        return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
     @GetMapping("/thread")

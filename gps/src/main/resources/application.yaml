@@ -16,4 +16,4 @@ server:
   tomcat:
     accept-count: 1000
     threads:
-      max: 500
+      max: 200
