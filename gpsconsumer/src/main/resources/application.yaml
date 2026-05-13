@@ -1,0 +1,24 @@
+spring:
+  application:
+    name: gpsconsumer
+  kafka:
+    bootstrap-servers: localhost:9092
+  datasource:
+    url: jdbc:postgresql://localhost:5435/app_db?reWriteBatchedInserts=true
+    username: postgres
+    password: postgres
+    driver-class-name: org.postgresql.Driver
+
+  jpa:
+    open-in-view: false
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+          # Clave para que los inserts sean masivos
+        jdbc.batch_size: 1000
+        order_inserts: true
+        generate_statistics: false # Cambiar a true solo para debug
+
+server:
+  port: 9090

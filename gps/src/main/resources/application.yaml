@@ -1,0 +1,19 @@
+spring:
+  application:
+    name: gps
+  kafka:
+    bootstrap-servers: localhost:9092
+    producer:
+      value-serializer: org.springframework.kafka.support.serializer.JacksonJsonSerializer
+  threads:
+    virtual:
+      enabled: true
+
+server:
+  port: 9595
+  http2:
+    enabled: false
+  tomcat:
+    accept-count: 1000
+    threads:
+      max: 500
